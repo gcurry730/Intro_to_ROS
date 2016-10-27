@@ -1,0 +1,16 @@
+<launch>
+
+  <arg name="model" default="$(find two_link_robot)/urdf/twolinkmodel.urdf"/>
+  <arg name="gui" default="false" />
+  <arg name="rvizconfig" default="$(find two_link_robot)/rviz/urdf.rviz" />
+  
+  <param name="use_gui" value="$(arg gui)"/>
+  <param name="robot_description" textfile="$(arg model)" />
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+  <node name="circle_path_pub" pkg="two_link_robot" type="circle_path_pub.py" output="screen" launch-prefix="xterm -e" />
+  <node name="marker_pub" pkg="two_link_robot" type="marker_pub.py" output="screen" launch-prefix="xterm -e" />
+
+
+</launch>

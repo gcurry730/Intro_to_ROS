@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<robot name="two_linkybot">
+
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.1" radius="0.2"/>
+      </geometry>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="first_link">
+    <visual>
+      <geometry>
+        <box size="1.0 .1 .1"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.5 0 0"/>
+      <material name="Cyan">
+        <color rgba="0 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="base_to_first_link" type="continuous">
+    <parent link="base_link"/>
+    <child link="first_link"/>
+    <origin xyz="0 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <link name="second_link">
+    <visual>
+      <geometry>
+        <box size="1.0 .1 .1"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.5 0 0"/>
+      <material name="fushia">
+        <color rgba="1 0 0.5 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="first_to_second_link" type="continuous">
+    <parent link="first_link"/>
+    <child link="second_link"/>
+    <origin xyz="1.0 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+  
+  <link name="end_effector">
+  </link>
+
+  <joint name="end_effector_fixed" type="fixed">
+    <parent link="second_link"/>
+    <child link="end_effector"/>
+    <origin xyz="1.0 0 0"/>
+  </joint>
+
+</robot>
